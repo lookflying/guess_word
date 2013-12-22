@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @guess.time %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @guess.user %>
+</p>
+
+<p>
+  <strong>Word:</strong>
+  <%= @guess.word %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @guess.content %>
+</p>
+
+<%= link_to 'Edit', edit_guess_path(@guess) %> |
+<%= link_to 'Back', guesses_path %>

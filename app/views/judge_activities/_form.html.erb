@@ -1,0 +1,25 @@
+<%= form_for(@judge_activity) do |f| %>
+  <% if @judge_activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@judge_activity.errors.count, "error") %> prohibited this judge_activity from being saved:</h2>
+
+      <ul>
+      <% @judge_activity.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :word_id %><br>
+    <%= f.text_field :word_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

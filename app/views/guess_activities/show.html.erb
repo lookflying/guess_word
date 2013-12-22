@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @guess_activity.user %>
+</p>
+
+<p>
+  <strong>Word:</strong>
+  <%= @guess_activity.word %>
+</p>
+
+<%= link_to 'Edit', edit_guess_activity_path(@guess_activity) %> |
+<%= link_to 'Back', guess_activities_path %>

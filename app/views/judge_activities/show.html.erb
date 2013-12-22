@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @judge_activity.user %>
+</p>
+
+<p>
+  <strong>Word:</strong>
+  <%= @judge_activity.word %>
+</p>
+
+<%= link_to 'Edit', edit_judge_activity_path(@judge_activity) %> |
+<%= link_to 'Back', judge_activities_path %>

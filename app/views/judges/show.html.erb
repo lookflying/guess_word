@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @judge.time %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @judge.user %>
+</p>
+
+<p>
+  <strong>Guess:</strong>
+  <%= @judge.guess %>
+</p>
+
+<p>
+  <strong>Judge:</strong>
+  <%= @judge.judge %>
+</p>
+
+<%= link_to 'Edit', edit_judge_path(@judge) %> |
+<%= link_to 'Back', judges_path %>

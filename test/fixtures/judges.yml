@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: 2013-12-23 00:19:30
+  user_id: 
+  guess_id: 
+  judge: MyString
+
+two:
+  time: 2013-12-23 00:19:30
+  user_id: 
+  guess_id: 
+  judge: MyString

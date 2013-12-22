@@ -1,0 +1,29 @@
+<h1>Listing judge_activities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Word</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @judge_activities.each do |judge_activity| %>
+      <tr>
+        <td><%= judge_activity.user %></td>
+        <td><%= judge_activity.word %></td>
+        <td><%= link_to 'Show', judge_activity %></td>
+        <td><%= link_to 'Edit', edit_judge_activity_path(judge_activity) %></td>
+        <td><%= link_to 'Destroy', judge_activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Judge activity', new_judge_activity_path %>

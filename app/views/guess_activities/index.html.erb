@@ -1,0 +1,29 @@
+<h1>Listing guess_activities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Word</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @guess_activities.each do |guess_activity| %>
+      <tr>
+        <td><%= guess_activity.user %></td>
+        <td><%= guess_activity.word %></td>
+        <td><%= link_to 'Show', guess_activity %></td>
+        <td><%= link_to 'Edit', edit_guess_activity_path(guess_activity) %></td>
+        <td><%= link_to 'Destroy', guess_activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Guess activity', new_guess_activity_path %>
