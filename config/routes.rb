@@ -1,9 +1,9 @@
 GuessWord::Application.routes.draw do
+  resources :words
+
   resources :guesses
 
   devise_for :users
-  resources :words
-
   resources :judge_activities
 
   resources :guess_activities

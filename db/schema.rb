@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131222162535) do
+ActiveRecord::Schema.define(version: 20131222164205) do
 
   create_table "guess_activities", force: true do |t|
     t.integer  "user_id"
@@ -81,5 +81,7 @@ ActiveRecord::Schema.define(version: 20131222162535) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "words", ["word"], name: "index_words_on_word", unique: true
 
 end
