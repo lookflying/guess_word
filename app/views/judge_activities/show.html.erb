@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Time:</strong>
+  <%= @judge_activity.time %>
+</p>
+
+<p>
   <strong>User:</strong>
-  <%= @judge_activity.user %>
+  <%= @judge_activity.user_id %>
 </p>
 
 <p>
   <strong>Word:</strong>
-  <%= @judge_activity.word %>
+  <%= @judge_activity.word_id %>
 </p>
 
 <%= link_to 'Edit', edit_judge_activity_path(@judge_activity) %> |

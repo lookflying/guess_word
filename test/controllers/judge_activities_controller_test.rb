@@ -18,7 +18,7 @@ class JudgeActivitiesControllerTest < ActionController::TestCase
 
   test "should create judge_activity" do
     assert_difference('JudgeActivity.count') do
-      post :create, judge_activity: { user_id: @judge_activity.user_id, word_id: @judge_activity.word_id }
+      post :create, judge_activity: { time: @judge_activity.time, user_id: @judge_activity.user_id, word_id: @judge_activity.word_id }
     end
 
     assert_redirected_to judge_activity_path(assigns(:judge_activity))
@@ -35,7 +35,7 @@ class JudgeActivitiesControllerTest < ActionController::TestCase
   end
 
   test "should update judge_activity" do
-    patch :update, id: @judge_activity, judge_activity: { user_id: @judge_activity.user_id, word_id: @judge_activity.word_id }
+    patch :update, id: @judge_activity, judge_activity: { time: @judge_activity.time, user_id: @judge_activity.user_id, word_id: @judge_activity.word_id }
     assert_redirected_to judge_activity_path(assigns(:judge_activity))
   end
 

@@ -17,8 +17,8 @@
     <% @judges.each do |judge| %>
       <tr>
         <td><%= judge.time %></td>
-        <td><%= judge.user %></td>
-        <td><%= judge.guess %></td>
+        <td><%= judge.user_id %></td>
+        <td><%= judge.guess_id %></td>
         <td><%= judge.judge %></td>
         <td><%= link_to 'Show', judge %></td>
         <td><%= link_to 'Edit', edit_judge_path(judge) %></td>

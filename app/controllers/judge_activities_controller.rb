@@ -69,6 +69,6 @@ class JudgeActivitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def judge_activity_params
-      params.require(:judge_activity).permit(:user_id, :word_id)
+      params.require(:judge_activity).permit(:time, :user_id, :word_id)
     end
 end

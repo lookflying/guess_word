@@ -3,8 +3,10 @@
 <table>
   <thead>
     <tr>
+      <th>Time</th>
       <th>User</th>
       <th>Word</th>
+      <th>Status</th>
       <th></th>
       <th></th>
       <th></th>
@@ -14,8 +16,10 @@
   <tbody>
     <% @guess_activities.each do |guess_activity| %>
       <tr>
-        <td><%= guess_activity.user %></td>
-        <td><%= guess_activity.word %></td>
+        <td><%= guess_activity.time %></td>
+        <td><%= guess_activity.user_id %></td>
+        <td><%= guess_activity.word_id %></td>
+        <td><%= guess_activity.status %></td>
         <td><%= link_to 'Show', guess_activity %></td>
         <td><%= link_to 'Edit', edit_guess_activity_path(guess_activity) %></td>
         <td><%= link_to 'Destroy', guess_activity, method: :delete, data: { confirm: 'Are you sure?' } %></td>

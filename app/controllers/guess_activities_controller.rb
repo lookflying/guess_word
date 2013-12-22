@@ -1,20 +1,28 @@
 class GuessActivitiesController < ApplicationController
+	before_filter :authenticate_user!
   before_action :set_guess_activity, only: [:show, :edit, :update, :destroy]
 
   # GET /guess_activities
   # GET /guess_activities.json
   def index
-    @guess_activities = GuessActivity.all
+    @guess_activities = GuessActivity.where("user_id = ?", current_user.id)
   end
 
   # GET /guess_activities/1
   # GET /guess_activities/1.json
   def show
+
   end
 
   # GET /guess_activities/new
   def new
     @guess_activity = GuessActivity.new
+		@guess_activity.time = DateTime.now
+		@guess_activity.user_id = current_user.id
+		@guess_activity.word_id = Word.first.id
+		@guess_activity.status = "new"
+		@guess_activity.save
+		redirect_to guess_activities_path
   end
 
   # GET /guess_activities/1/edit
@@ -69,6 +77,6 @@ class GuessActivitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def guess_activity_params
-      params.require(:guess_activity).permit(:user_id, :word_id)
+      params.require(:guess_activity).permit(:time, :user_id, :word_id, :status)
     end
 end

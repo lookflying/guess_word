@@ -1,15 +1,15 @@
 GuessWord::Application.routes.draw do
   resources :words
 
-  resources :guesses
-
-  devise_for :users
   resources :judge_activities
 
   resources :guess_activities
 
   resources :judges
 
+  resources :guesses
+
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

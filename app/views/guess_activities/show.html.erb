@@ -1,13 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Time:</strong>
+  <%= @guess_activity.time %>
+</p>
+
+<p>
   <strong>User:</strong>
-  <%= @guess_activity.user %>
+  <%= @guess_activity.user_id %>
 </p>
 
 <p>
   <strong>Word:</strong>
-  <%= @guess_activity.word %>
+  <%= @guess_activity.word_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @guess_activity.status %>
 </p>
 
 <%= link_to 'Edit', edit_guess_activity_path(@guess_activity) %> |

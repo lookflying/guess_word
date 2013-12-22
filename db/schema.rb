@@ -11,17 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131222164205) do
+ActiveRecord::Schema.define(version: 20131222180845) do
 
   create_table "guess_activities", force: true do |t|
+    t.datetime "time"
     t.integer  "user_id"
     t.integer  "word_id"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "guess_activities", ["user_id"], name: "index_guess_activities_on_user_id"
-  add_index "guess_activities", ["word_id"], name: "index_guess_activities_on_word_id"
 
   create_table "guesses", force: true do |t|
     t.datetime "time"
@@ -32,18 +31,13 @@ ActiveRecord::Schema.define(version: 20131222164205) do
     t.datetime "updated_at"
   end
 
-  add_index "guesses", ["user_id"], name: "index_guesses_on_user_id"
-  add_index "guesses", ["word_id"], name: "index_guesses_on_word_id"
-
   create_table "judge_activities", force: true do |t|
+    t.datetime "time"
     t.integer  "user_id"
     t.integer  "word_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "judge_activities", ["user_id"], name: "index_judge_activities_on_user_id"
-  add_index "judge_activities", ["word_id"], name: "index_judge_activities_on_word_id"
 
   create_table "judges", force: true do |t|
     t.datetime "time"
@@ -53,9 +47,6 @@ ActiveRecord::Schema.define(version: 20131222164205) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "judges", ["guess_id"], name: "index_judges_on_guess_id"
-  add_index "judges", ["user_id"], name: "index_judges_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -81,7 +72,5 @@ ActiveRecord::Schema.define(version: 20131222164205) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "words", ["word"], name: "index_words_on_word", unique: true
 
 end

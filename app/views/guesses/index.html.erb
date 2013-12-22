@@ -17,8 +17,8 @@
     <% @guesses.each do |guess| %>
       <tr>
         <td><%= guess.time %></td>
-        <td><%= guess.user %></td>
-        <td><%= guess.word %></td>
+        <td><%= guess.user_id %></td>
+        <td><%= guess.word_id %></td>
         <td><%= guess.content %></td>
         <td><%= link_to 'Show', guess %></td>
         <td><%= link_to 'Edit', edit_guess_path(guess) %></td>
