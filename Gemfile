@@ -46,4 +46,11 @@ end
 
 gem 'devise'
 gem 'bootstrap-sass'
-
+group :development do
+  gem 'rails_layout'
+end
+group :development, :test do
+	gem "binding_of_caller"
+	gem 'better_errors'
+end
+gem 'simple_form'

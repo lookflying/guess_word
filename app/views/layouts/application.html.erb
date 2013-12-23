@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>GuessWord</title>
-		<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-		<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-		<%= csrf_meta_tags %>
-	</head>
-	<body>
-		<p class="notice"><%= notice %></p>
-		<p class="alert"><%= alert %></p>
-		<% if user_signed_in? %>
-			<%= current_user.email %>
-			<%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
-		<% else %>
-			<%= link_to 'Sign in', new_user_session_path %>
-		<% end %>
-		<%= yield %>
-	
-	</body>
+  <head>
+		<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Guess Word" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Guess Word" %>">
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <main role="main">
+       <%= render 'layouts/messages' %>
+       <%= yield %>
+    </main>
+  </body>
 </html>

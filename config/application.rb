@@ -9,6 +9,8 @@ Bundler.require(:default, Rails.env)
 module GuessWord
   class Application < Rails::Application
 	config.time_zone = "Beijing"
+	config.encoding = "utf-8"
+#	config.action_controller.include_all_helpers = true
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

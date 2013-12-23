@@ -20,5 +20,15 @@
   <%= @guess.content %>
 </p>
 
+<p>
+  <strong>Judge:</strong>
+  <%= @guess.judge_id %>
+</p>
+
+<p>
+  <strong>Judge:</strong>
+  <%= @guess.judge %>
+</p>
+
 <%= link_to 'Edit', edit_guess_path(@guess) %> |
 <%= link_to 'Back', guesses_path %>

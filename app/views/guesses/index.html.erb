@@ -7,6 +7,8 @@
       <th>User</th>
       <th>Word</th>
       <th>Content</th>
+      <th>Judge</th>
+      <th>Judge</th>
       <th></th>
       <th></th>
       <th></th>
@@ -20,6 +22,8 @@
         <td><%= guess.user_id %></td>
         <td><%= guess.word_id %></td>
         <td><%= guess.content %></td>
+        <td><%= guess.judge_id %></td>
+        <td><%= guess.judge %></td>
         <td><%= link_to 'Show', guess %></td>
         <td><%= link_to 'Edit', edit_guess_path(guess) %></td>
         <td><%= link_to 'Destroy', guess, method: :delete, data: { confirm: 'Are you sure?' } %></td>

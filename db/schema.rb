@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131222180845) do
+ActiveRecord::Schema.define(version: 20131223130716) do
 
   create_table "guess_activities", force: true do |t|
     t.datetime "time"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20131222180845) do
     t.integer  "user_id"
     t.integer  "word_id"
     t.string   "content"
+    t.integer  "judge_id"
+    t.string   "judge"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

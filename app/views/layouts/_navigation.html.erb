@@ -1,0 +1,25 @@
+<%# navigation styled for Bootstrap 3.0 %>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'Home', root_path, class: 'navbar-brand' %>
+			<% if user_signed_in? %>
+				<a class="navbar-brand" href="#"><%= current_user.email %></a>
+				<%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class:"navbar-brand navbar-right" %>
+			<% else %>
+				<%= link_to 'Sign out', destroy_user_session_path, :method => :delete, class:"navbar-brand navbar-right" %>
+			<% end %>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <%= render 'layouts/navigation_links' %>
+      </ul>
+    </div>
+  </div>
+</nav>

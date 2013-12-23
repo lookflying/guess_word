@@ -1,4 +1,6 @@
 GuessWord::Application.routes.draw do
+  resources :guesses
+
   resources :words
 
   resources :judge_activities
@@ -6,8 +8,6 @@ GuessWord::Application.routes.draw do
   resources :guess_activities
 
   resources :judges
-
-  resources :guesses
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -17,7 +17,7 @@ GuessWord::Application.routes.draw do
   root 'guess_activities#index'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  get 'guess/:id' => 'guess_activities#guess', as: 'do_guess'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

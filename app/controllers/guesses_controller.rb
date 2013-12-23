@@ -69,6 +69,6 @@ class GuessesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def guess_params
-      params.require(:guess).permit(:time, :user_id, :word_id, :content)
+      params.require(:guess).permit(:time, :user_id, :word_id, :content, :judge_id, :judge)
     end
 end

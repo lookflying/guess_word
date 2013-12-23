@@ -1,0 +1,46 @@
+<div class="page-header">
+	<h1><%= @word.length %> Letter(s)<small><%= @word.property %></small></h1>
+</div>
+<ul class="list-group">
+	<% @old_guesses.each do |guess| %> 
+		<% if guess.judge == :new %>
+			<li class="list-group-item list-group-item-info"><%= guess.content %><span class="glyphicon glyphicon-time"></span></li>
+		<% elsif guess.judge == :true %>
+			<li class="list-group-item list-group-item-success"><%= guess.content %><span class="glyphicon glyphicon-thumbs-up"></span></li>
+		<% elsif guess.judge == :false %>
+			<li class="list-group-item list-group-item-danger"><%= guess.content %><span class="glyphicon glyphicon-thumbs-down"></span></li>
+		<% end %>
+	<% end %>
+</ul>
+
+<%= form_tag("", method: "get") do %>
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="New Guess">
+	</div>
+	<% if not @guess_to_judge.nil? %>
+		<ul class="list-group">
+			<li class="list-group-item">
+			<h3><%= @word_of_guess_to_judge.word %><small><%= @word_of_guess_to_judge.property%></small></h3>
+			</li>
+			<li class="list-group-item"><%= @guess_to_judge.content %></li>
+			<li class="list-group-item"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Judge <span class="caret"></span></button>
+			<ul class="dropdown-menu">
+				<li><a href="#">True</a></li>
+				<li><a href="#">False</a></li>
+				<li><a href="#">Not sure</a></li>
+				<li><a href="#">Guess right</a></li>
+				<li class="divider"></li>
+				<li><a href="#">Can't answer</a></li>
+			</ul>
+			</li>
+		</ul>
+	<% end %>
+	<%= submit_tag("Search", class: "btn btn-default") %>
+<% end %>
+
+<form class="navbar-form navbar-left" role="search">
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="New Guess">
+	</div>
+	<button type="submit" class="btn btn-default">Submit</button>
+</form>

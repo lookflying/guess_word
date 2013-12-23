@@ -18,7 +18,7 @@ class GuessesControllerTest < ActionController::TestCase
 
   test "should create guess" do
     assert_difference('Guess.count') do
-      post :create, guess: { content: @guess.content, time: @guess.time, user_id: @guess.user_id, word_id: @guess.word_id }
+      post :create, guess: { content: @guess.content, judge: @guess.judge, judge_id: @guess.judge_id, time: @guess.time, user_id: @guess.user_id, word_id: @guess.word_id }
     end
 
     assert_redirected_to guess_path(assigns(:guess))
@@ -35,7 +35,7 @@ class GuessesControllerTest < ActionController::TestCase
   end
 
   test "should update guess" do
-    patch :update, id: @guess, guess: { content: @guess.content, time: @guess.time, user_id: @guess.user_id, word_id: @guess.word_id }
+    patch :update, id: @guess, guess: { content: @guess.content, judge: @guess.judge, judge_id: @guess.judge_id, time: @guess.time, user_id: @guess.user_id, word_id: @guess.word_id }
     assert_redirected_to guess_path(assigns(:guess))
   end
 
