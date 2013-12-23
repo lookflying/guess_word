@@ -3,44 +3,43 @@
 </div>
 <ul class="list-group">
 	<% @old_guesses.each do |guess| %> 
-		<% if guess.judge == :new %>
+		<% if guess.judge == "new" %>
 			<li class="list-group-item list-group-item-info"><%= guess.content %><span class="glyphicon glyphicon-time"></span></li>
-		<% elsif guess.judge == :true %>
+		<% elsif guess.judge == "true" %>
 			<li class="list-group-item list-group-item-success"><%= guess.content %><span class="glyphicon glyphicon-thumbs-up"></span></li>
-		<% elsif guess.judge == :false %>
+		<% elsif guess.judge == "false" %>
 			<li class="list-group-item list-group-item-danger"><%= guess.content %><span class="glyphicon glyphicon-thumbs-down"></span></li>
+		<% else %>
+			<li class="list-group-item list-group-item-warning"><%= guess.content %><span class="glyphicon glyphicon-trash"</span></li>
 		<% end %>
 	<% end %>
 </ul>
 
-<%= form_tag("", method: "get") do %>
+<%= form_tag(do_judge_path, method: "post") do %>
 	<div class="form-group">
-		<input type="text" class="form-control" placeholder="New Guess">
+		<%= text_field_tag "guess_content", nil, placeholder: "New Guess", class: "form-control" %>
 	</div>
+	<%= hidden_field_tag :activity_id, @guess_activity.id %>
+	<%= hidden_field_tag :word_id, @word.id %>
 	<% if not @guess_to_judge.nil? %>
+		<%= hidden_field_tag :guess_to_judge_id, @guess_to_judge.id %>
 		<ul class="list-group">
 			<li class="list-group-item">
 			<h3><%= @word_of_guess_to_judge.word %><small><%= @word_of_guess_to_judge.property%></small></h3>
 			</li>
 			<li class="list-group-item"><%= @guess_to_judge.content %></li>
-			<li class="list-group-item"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Judge <span class="caret"></span></button>
-			<ul class="dropdown-menu">
-				<li><a href="#">True</a></li>
-				<li><a href="#">False</a></li>
-				<li><a href="#">Not sure</a></li>
-				<li><a href="#">Guess right</a></li>
-				<li class="divider"></li>
-				<li><a href="#">Can't answer</a></li>
-			</ul>
+			<li class="list-group-item">
+			<div class="input_group">
+				<%= radio_button_tag :judge, :ture, false %>True<br>
+				<%= radio_button_tag :judge, :false, false %>False<br>
+				<%= radio_button_tag :judge, :not_sure, false %>Not Sure<br>
+				<%= radio_button_tag :judge, :guess_right, false %>Guess Right<br>
+			</div>
 			</li>
 		</ul>
+		<%= submit_tag("Guess & Judge", class: "btn btn-default") %>
+	<% else %>
+		<%= submit_tag("Guess", class: "btn btn-default") %>
 	<% end %>
-	<%= submit_tag("Search", class: "btn btn-default") %>
 <% end %>
 
-<form class="navbar-form navbar-left" role="search">
-	<div class="form-group">
-		<input type="text" class="form-control" placeholder="New Guess">
-	</div>
-	<button type="submit" class="btn btn-default">Submit</button>
-</form>
