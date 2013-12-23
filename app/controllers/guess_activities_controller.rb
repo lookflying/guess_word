@@ -31,7 +31,7 @@ class GuessActivitiesController < ApplicationController
 		session[:activity]=@guess_activity	
 		@word = Word.find(@guess_activity.word_id)
 		@old_guesses = get_guesses(@word.id, @guess_activity.user_id, nil)
-		@guess_to_judge = get_guesses_exclude(get_guessed(@guess_activity.user_id)).first
+		@guess_to_judge = get_new_guesses_exclude(get_unfinished(@guess_activity.user_id)).first
 		@new_guess = Guess.new
 		if @guess_to_judge.nil?
 			@word_of_guess_to_judge = nil
@@ -53,19 +53,26 @@ class GuessActivitiesController < ApplicationController
 			if JudgeActivity.where(user_id: current_user.id, word_id: guess_judged.word_id).empty?
 				JudgeActivity.create(user_id: current_user.id, word_id: guess_judged.word_id)
 			end
+			if params[:judge] == "guess_right"
+				guess_activity_judged = GuessActivity.where(user_id: guess_judged.user_id, word_id: guess_judged.word_id).first
+				guess_activity_judged.update(status: :finished)
+			end
 		end
 		if params[:guess_content].empty?
-				flash[:warning] = "You guess is empty!"
-				redirect_to do_guess_path(params[:activity_id]) and return
+			flash[:warning] = "You guess is empty!"
+			redirect_to do_guess_path(params[:activity_id]) and return
 		end
-		guess = Guess.new
-		guess.do_guess(current_user.id, params[:word_id], params[:guess_content])
+		guess_activity = GuessActivity.find(params[:activity_id])
+		if guess_activity.status != "finished"
+			guess = Guess.new
+			guess.do_guess(current_user.id, params[:word_id], params[:guess_content])
+		end
 		redirect_to do_guess_path(params[:activity_id])
 	end
 
 	# GET /guess_activities/new
 	def new
-		guessed_word = get_guessed(current_user.id)
+		guessed_word = get_participated(current_user.id)
 		new_words = Word.where.not(id: guessed_word)
 		if new_words.empty?
 			flash[:warning] = "no more words to guess!"

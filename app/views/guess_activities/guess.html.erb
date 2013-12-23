@@ -1,5 +1,9 @@
 <div class="page-header">
-	<h1><%= @word.length %> Letter(s)<small><%= @word.property %></small></h1>
+	<% if @guess_activity.status == "finished" %>
+		<h1><%= @word.word %><small><%= @word.property %></small></h1>
+	<% else %>
+		<h1><%= @word.length %> Letter(s)<small><%= @word.property %></small></h1>
+	<% end %>
 </div>
 <ul class="list-group">
 	<% @old_guesses.each do |guess| %> 
@@ -9,6 +13,8 @@
 			<li class="list-group-item list-group-item-success"><%= guess.content %><span class="glyphicon glyphicon-thumbs-up"></span></li>
 		<% elsif guess.judge == "false" %>
 			<li class="list-group-item list-group-item-danger"><%= guess.content %><span class="glyphicon glyphicon-thumbs-down"></span></li>
+		<% elsif guess.judge == "guess_right" %>
+			<li class="list-group-item list-group-item-success"><%= guess.content %><span class="glyphicon glyphicon-ok-sign"></span></li>
 		<% else %>
 			<li class="list-group-item list-group-item-warning"><%= guess.content %><span class="glyphicon glyphicon-trash"</span></li>
 		<% end %>
@@ -30,7 +36,7 @@
 			<li class="list-group-item"><%= @guess_to_judge.content %></li>
 			<li class="list-group-item">
 			<div class="input_group">
-				<%= radio_button_tag :judge, :ture, false %>True<br>
+				<%= radio_button_tag :judge, :true, false %>True<br>
 				<%= radio_button_tag :judge, :false, false %>False<br>
 				<%= radio_button_tag :judge, :not_sure, false %>Not Sure<br>
 				<%= radio_button_tag :judge, :guess_right, false %>Guess Right<br>

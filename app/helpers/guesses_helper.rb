@@ -19,4 +19,8 @@ module GuessesHelper
 		Guess.where.not(word_id: guessed)
 	end
 
+	def get_new_guesses_exclude(range)
+		Guess.where.not(word_id: range).where(judge: "new")
+	end
+
 end
