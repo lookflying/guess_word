@@ -5,6 +5,7 @@
     <tr>
       <th>Word</th>
       <th>Property</th>
+      <th>Count</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= word.word %></td>
         <td><%= word.property %></td>
+        <td><%= word.count %></td>
         <td><%= link_to 'Show', word %></td>
         <td><%= link_to 'Edit', edit_word_path(word) %></td>
         <td><%= link_to 'Destroy', word, method: :delete, data: { confirm: 'Are you sure?' } %></td>

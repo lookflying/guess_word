@@ -4,6 +4,7 @@ class GuessActivitiesController < ApplicationController
 	before_action :set_guess_activity, only: [:show, :edit, :update, :destroy]
 	include GuessesHelper
 	include GuessActivitiesHelper
+	include WordsHelper
 	# GET /guess_activities
 	# GET /guess_activities.json
 	def index
@@ -66,6 +67,10 @@ class GuessActivitiesController < ApplicationController
 		if guess_activity.status != "finished"
 			guess = Guess.new
 			guess.do_guess(current_user.id, params[:word_id], params[:guess_content])
+			if params[:guess_content] == Word.find(params[:word_id]).word
+				guess.do_judge(0, :guess_right)
+				guess_activity.update(status: :finished)
+			end
 		end
 		redirect_to do_guess_path(params[:activity_id])
 	end
@@ -73,12 +78,12 @@ class GuessActivitiesController < ApplicationController
 	# GET /guess_activities/new
 	def new
 		guessed_word = get_participated(current_user.id)
-		new_words = Word.where.not(id: guessed_word)
-		if new_words.empty?
+		new_word = pick_new_word(guessed_word)
+		if new_word.nil?
 			flash[:warning] = "no more words to guess!"
 			redirect_to root_path and return
 		end
-		new_word_id = new_words.first.id
+		new_word_id = new_word.id
 		@guess_activity = GuessActivity.create(user_id: current_user.id, word_id: new_word_id)
 		redirect_to do_guess_path(@guess_activity.id)
 	end

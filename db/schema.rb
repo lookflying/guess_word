@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131223130716) do
+ActiveRecord::Schema.define(version: 20131223190550) do
 
   create_table "guess_activities", force: true do |t|
     t.datetime "time"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20131223130716) do
   create_table "words", force: true do |t|
     t.string   "word"
     t.string   "property"
+    t.integer  "count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -49,8 +49,11 @@ gem 'bootstrap-sass'
 group :development do
   gem 'rails_layout'
 end
-group :development, :test do
+group :development do
 	gem "binding_of_caller"
 	gem 'better_errors'
 end
-gem 'simple_form'
+
+group :development do
+	gem 'seed_dump'
+end

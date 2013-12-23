@@ -1,7 +1,7 @@
 GuessWord::Application.routes.draw do
-  resources :guesses
-
   resources :words
+
+  resources :guesses
 
   resources :judge_activities
 

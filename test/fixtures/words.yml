@@ -3,7 +3,9 @@
 one:
   word: MyString
   property: MyString
+  count: 1
 
 two:
   word: MyString
   property: MyString
+  count: 1
