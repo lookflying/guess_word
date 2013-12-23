@@ -16,12 +16,12 @@ class GuessActivitiesController < ApplicationController
 
   # GET /guess_activities/new
   def new
-    @guess_activity = GuessActivity.new
-		@guess_activity.time = DateTime.now
-		@guess_activity.user_id = current_user.id
-		@guess_activity.word_id = Word.first.id
-		@guess_activity.status = "new"
-		@guess_activity.save
+#    @guess_activity = GuessActivity.new
+#		@guess_activity.time = DateTime.now
+#		@guess_activity.user_id = current_user.id
+#		@guess_activity.word_id = Word.first.id
+#		@guess_activity.save
+		@guess_activity = GuessActivity.create(user_id: current_user.id, word_id: Word.first.id)
 		redirect_to guess_activities_path
   end
 
