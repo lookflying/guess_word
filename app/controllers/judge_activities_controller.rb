@@ -1,4 +1,5 @@
 class JudgeActivitiesController < ApplicationController
+	before_filter :authenticate_admin!
   before_action :set_judge_activity, only: [:show, :edit, :update, :destroy]
 
   # GET /judge_activities

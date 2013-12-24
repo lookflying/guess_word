@@ -1,4 +1,5 @@
 class GuessesController < ApplicationController
+	before_filter :authenticate_admin!
   before_action :set_guess, only: [:show, :edit, :update, :destroy]
 
   # GET /guesses

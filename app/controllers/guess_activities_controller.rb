@@ -1,5 +1,6 @@
 # encoding: utf-8
 class GuessActivitiesController < ApplicationController
+	before_filter :authenticate_admin!, :except =>[:index, :show, :guess, :judge, :new]
 	before_filter :authenticate_user!
 	before_action :set_guess_activity, only: [:show, :edit, :update, :destroy]
 	include GuessesHelper
