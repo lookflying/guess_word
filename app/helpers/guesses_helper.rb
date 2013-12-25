@@ -22,5 +22,12 @@ module GuessesHelper
 	def get_new_guesses_exclude(range)
 		Guess.where.not(word_id: range).where(judge: "new")
 	end
+	
+	def get_candidate_guesses(judged_words, guessed_words, unfinished) 
+		candidates = Guess.where.not(word_id: unfinished).where(word_id: judged_words)
+		if candidates.empty?
+			candidates = Guess.where(word_id: guessed_words)
+		end
+	end	
 
 end

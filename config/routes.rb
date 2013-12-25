@@ -15,12 +15,12 @@ GuessWord::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'guess_activities#index'
+  root 'guess_activities#home'
 
   # Example of regular route:
-  get 'guess/:id' => 'guess_activities#guess', as: 'do_guess'
+  post 'guess' => 'guess_activities#guess', as: 'do_guess'
 
-	post 'judge' => 'guess_activities#judge', as: 'do_judge'
+	get 'home' => 'guess_activities#home', as: 'home'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

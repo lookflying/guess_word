@@ -8,24 +8,24 @@
 <ul class="list-group">
 	<% @old_guesses.each do |guess| %> 
 		<% if guess.judge == "new" %>
-			<li class="list-group-item list-group-item-info"><%= guess.content %><span class="glyphicon glyphicon-time"></span></li>
+			<li class="list-group-item list-group-item-info"><span class="glyphicon glyphicon-time"></span><%= guess.content %></li>
 		<% elsif guess.judge == "true" %>
-			<li class="list-group-item list-group-item-success"><%= guess.content %><span class="glyphicon glyphicon-thumbs-up"></span></li>
+			<li class="list-group-item list-group-item-success"><span class="glyphicon glyphicon-thumbs-up"></span><%= guess.content %></li>
 		<% elsif guess.judge == "false" %>
-			<li class="list-group-item list-group-item-danger"><%= guess.content %><span class="glyphicon glyphicon-thumbs-down"></span></li>
+			<li class="list-group-item list-group-item-danger"><span class="glyphicon glyphicon-thumbs-down"></span><%= guess.content %></li>
 		<% elsif guess.judge == "guess_right" %>
-			<li class="list-group-item list-group-item-success"><%= guess.content %><span class="glyphicon glyphicon-ok-sign"></span></li>
+			<li class="list-group-item list-group-item-success"><span class="glyphicon glyphicon-ok-sign"></span><%= guess.content %></li>
 		<% else %>
-			<li class="list-group-item list-group-item-warning"><%= guess.content %><span class="glyphicon glyphicon-trash"</span></li>
+			<li class="list-group-item list-group-item-warning"><span class="glyphicon glyphicon-trash"</span><%= guess.content %></li>
 		<% end %>
 	<% end %>
 </ul>
 
-<%= form_tag(do_judge_path, method: "post") do %>
+<%= form_tag(do_guess_path, method: "post") do %>
 	<div class="form-group">
 		<%= text_field_tag "guess_content", nil, placeholder: "New Guess", class: "form-control" %>
 	</div>
-	<%= hidden_field_tag :activity_id, @guess_activity.id %>
+	<%= hidden_field_tag :id, @guess_activity.id %>
 	<%= hidden_field_tag :word_id, @word.id %>
 	<% if not @guess_to_judge.nil? %>
 		<%= hidden_field_tag :guess_to_judge_id, @guess_to_judge.id %>
@@ -49,3 +49,26 @@
 	<% end %>
 <% end %>
 
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+	Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			</div>
+			<div class="modal-body">
+				...
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
