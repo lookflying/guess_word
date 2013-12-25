@@ -1,0 +1,31 @@
+<div class="page-header">
+	<h1>Users</h1>
+</div>
+<div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Email</th>
+				<th>IP</th>
+				<th>GuessActivity</th>
+				<th>Guess</th>
+				<th>JudgeActivity</th>
+				<th>Judge</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @all_users.each do |user| %>
+				<tr>
+					<td><%= user.id %></td>
+					<td><%= user.email %></td>
+					<td><%= user.current_sign_in_ip %></td>
+					<td><%= get_guess_activities_count(user.id) %></td>
+					<td><%= get_guesses_count(user.id) %></td>
+					<td><%= get_judge_activities_count(user.id) %></td>
+					<td><%= get_judges_count(user.id) %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
