@@ -18,9 +18,9 @@ GuessWord::Application.routes.draw do
   root 'guess_activities#home'
 
   # Example of regular route:
-  post 'guess' => 'guess_activities#guess', as: 'do_guess'
+  post 'guess' => 'game#guess', as: 'do_guess'
 
-	get 'home' => 'guess_activities#home', as: 'home'
+	get 'home' => 'game#home', as: 'home'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
