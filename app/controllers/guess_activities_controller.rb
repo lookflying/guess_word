@@ -1,4 +1,5 @@
 class GuessActivitiesController < ApplicationController
+	before_filter :authenticate_admin!
   before_action :set_guess_activity, only: [:show, :edit, :update, :destroy]
 
   # GET /guess_activities

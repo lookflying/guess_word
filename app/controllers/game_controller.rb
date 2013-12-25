@@ -37,6 +37,7 @@ class GameController < ApplicationController
 					empty_guess
 				else	
 					add_guess(@guess_activity, params[:guess_content], params[:word_id])
+					params[:guess_content] = ""
 				end
 			end
 
@@ -52,7 +53,6 @@ class GameController < ApplicationController
 					wrong_url and return
 				end
 			end
-			session[:activity]=@guess_activity	
 			@word = Word.find(@guess_activity.word_id)
 			@old_guesses = get_guesses(@word.id, @guess_activity.user_id, nil)
 			@guess_to_judge = get_judge_candidates(@guess_activity.user_id).first

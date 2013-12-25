@@ -47,7 +47,7 @@ module GameHelper
 
 	def new_activity(user_id)
 		#FIXME put limitation in configuration file!!!
-		if get_unfinished(user_id).count > 4
+		if get_unfinished(user_id).count >= 4
 			too_many_unfinished and return nil
 		else
 			new_word = get_word_candidate(user_id)
