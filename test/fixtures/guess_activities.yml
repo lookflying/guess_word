@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  time: 2013-12-23 02:07:11
+  time: 2013-12-25 22:47:09
   user_id: 1
   word_id: 1
   status: MyString
 
 two:
-  time: 2013-12-23 02:07:11
+  time: 2013-12-25 22:47:09
   user_id: 1
   word_id: 1
   status: MyString

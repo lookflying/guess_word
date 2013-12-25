@@ -9,7 +9,7 @@ class GameController < ApplicationController
 			id = params[:id]
 			@guess_activity = GuessActivity.find(id)
 		else
-			@guess_activity = new_activity(user_id)
+			@guess_activity = new_activity(current_user.id)
 		end
 		if @guess_activity.nil?
 			return

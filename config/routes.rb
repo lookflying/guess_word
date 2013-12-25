@@ -1,12 +1,12 @@
 GuessWord::Application.routes.draw do
+  resources :guess_activities
+
   devise_for :admins
   resources :words
 
   resources :guesses
 
   resources :judge_activities
-
-  resources :guess_activities
 
   resources :judges
 
@@ -15,7 +15,7 @@ GuessWord::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'guess_activities#home'
+  root 'game#home'
 
   # Example of regular route:
   post 'guess' => 'game#guess', as: 'do_guess'

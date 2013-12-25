@@ -2,6 +2,11 @@
 	<h1>Your Guesses</h1>
 </div>
 <div>
+	<p>
+	<%=form_tag(do_guess_path, method: "post") do %>
+		<button type="submit" class="btn btn-primary">New Guess</button>
+	<% end %>
+	</p>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -24,7 +29,7 @@
 							<%= hidden_field_tag :id, activity.id %>
 							<button type="submit" class="btn btn-default"><%= display_action(activity) %></button>
 						<% end %>
-						</td>
+					</td>
 				</tr>
 			<% end %>
 		</tbody>

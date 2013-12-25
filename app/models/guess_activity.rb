@@ -6,6 +6,6 @@ class GuessActivity < ActiveRecord::Base
 	end
 
 	def finished?
-		status == "finished"
+		self.status == "finished"
 	end
 end
