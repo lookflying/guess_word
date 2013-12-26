@@ -19,8 +19,9 @@ GuessWord::Application.routes.draw do
 
   # Example of regular route:
   post 'guess' => 'game#guess', as: 'do_guess'
-
 	get 'home' => 'game#home', as: 'home'
+	get 'test' => 'game#test', as: 'test'
+	get 'guessed' => 'game#guessed', as: 'guessed'
 
 	get 'admin' => 'admin#home', as: 'admin_home'
 	get 'users' => 'admin#users'

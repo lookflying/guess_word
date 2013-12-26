@@ -1,3 +1,15 @@
+<script>
+	function refresh_guess(){
+		
+	}
+	$(function(){
+		setInterval(function(){
+			$.get("guessed", { id: <%= @guess_activity.id %>}, function(data){
+				$("#test-ajax").html(data.string);
+			});
+		}, 1000);
+	});
+</script>
 <div class="page-header">
 	<% if @guess_activity.status == "finished" %>
 		<h1><%= @word.word %><small><%= @word.property %></small></h1>
@@ -20,6 +32,7 @@
 		<% end %>
 	<% end %>
 </ul>
+
 
 <%= form_tag(do_guess_path, method: "post") do %>
 	<div class="form-group">
@@ -48,3 +61,6 @@
 		<%= submit_tag("Guess", class: "btn btn-primary btn-lg") %>
 	<% end %>
 <% end %>
+
+
+<div id="test-ajax">init</div>

@@ -56,6 +56,14 @@ module GameHelper
 			end
 			guess_activity = add_guess_activity(user_id, new_word.id)
 		end
-		
+	end
+
+	@@judge_map = {"new" => -1, "false" => 0, "true" => 1, "not_sure" => 2, "guess_right" => 3}
+	def encode_judge(judge)
+		if @@judge_map.has_key? judge
+			@@judge_map[judge]
+		else
+			-2
+		end
 	end
 end

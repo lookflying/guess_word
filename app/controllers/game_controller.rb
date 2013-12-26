@@ -2,7 +2,7 @@ class GameController < ApplicationController
 	include GameHelper
 	include GuessesHelper
 	include ApplicationHelper
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, :except=> :test
 	def guess
 		#from new button
 		if params.has_key? :id
@@ -14,7 +14,7 @@ class GameController < ApplicationController
 		if @guess_activity.nil?
 			return
 		else
-
+			params[:id] = @guess_activity.id
 			#from judge page
 			if params.has_key?(:guess_to_judge_id)
 				if params[:judge].nil?
@@ -64,10 +64,39 @@ class GameController < ApplicationController
 			end
 		end
 	end
-	
+
 	def home
 		@guess_activity = get_participated(current_user.id)
 	end
 
+	def test
+		#render json: DateTime.now
+		render json: nil
+	end
+
+	def guessed
+		if params.has_key? :id
+			id = params[:id]
+			activity = GuessActivity.find(id)
+			if activity.nil?
+				render json: nil
+			else
+				if activity.user_id != current_user.id
+					render json: nil
+				else
+					old_guesses = Guess.where(user_id: activity.user_id, word_id: activity.word_id)
+					guesses_json = Jbuilder.encode do |json|
+						json.array! old_guesses do |g|
+							json.content g.content
+							json.judge encode_judge(g.judge)
+						end
+					end
+					render json: guesses_json
+				end
+			end
+		else
+			render json: nil
+		end
+	end
 
 end
