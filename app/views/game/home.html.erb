@@ -2,11 +2,18 @@
 	<h1>Your Guesses</h1>
 </div>
 <div>
-	<p>
-	<%=form_tag(do_guess_path, method: "post") do %>
-		<button type="submit" class="btn btn-primary">New Guess</button>
-	<% end %>
-	</p>
+	<span style="float:left;">	
+		<%=form_tag(do_guess_path, method: "post") do %>
+			<button type="submit" class="btn btn-primary">New Guess</button>
+		<% end %>
+	</span>
+	<span style="float:right;">
+		<%=form_tag(do_judge_path, method: "post") do %>
+			<button type="submit" class="btn btn-success">Volunteer to Judge</button>
+		<% end %>
+	</span>
+</div>
+<div>
 	<table class="table table-striped">
 		<thead>
 			<tr>

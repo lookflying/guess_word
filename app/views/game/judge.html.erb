@@ -1,0 +1,19 @@
+<% if !@word.nil? %>
+	<%= form_tag(do_judge_path, method: "post") do %>
+		<%= hidden_field_tag :guess_id, @guess_id %>
+		<ul class="list-group">
+			<li class="list-group-item">
+			<h3><%= @word.word %><small><%= @word.property %></small></h3>
+			</li>
+			<li class="list-group-item"><%= @guess_content %></li>
+			<li class="list-group-item">
+			<div class="input_group">
+				<button name="judge" type="submit" value="true" class="btn btn-info">True</button>
+				<button name="judge" type="submit" value="false" class="btn btn-danger">False</button>
+				<button name="judge" type="submit" value="not_sure" class="btn btn-warning">Not Sure</button>
+				<button name="judge" type="submit" value="guess_right" class="btn btn-success">Guess Right</button>
+			</div>
+			</li>
+		</ul>
+	<% end %>
+<% end %>

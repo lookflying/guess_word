@@ -100,4 +100,29 @@ class GameController < ApplicationController
 		end
 	end
 
+	def judge
+		#judge
+		if params.has_key?(:guess_id) and params.has_key?(:judge)
+			new_judge = Judge.new
+			new_judge.do_judge(current_user.id, params[:guess_id], params[:judge])
+			guess_judged = Guess.find(params[:guess_id])
+			guess_judged.do_judge(new_judge.id, new_judge.judge)
+			add_judge_activity(current_user.id, guess_judged.word_id)
+			if params[:judge] == "guess_right"
+				guess_activity_judged = GuessActivity.where(user_id: guess_judged.user_id, word_id: guess_judged.word_id).first
+				guess_activity_judged.update(status: :finished)
+			end
+		end
+
+		#display
+		@judge_candidate = get_judge_candidates(current_user.id).first
+		if !@judge_candidate.nil?
+			@word = Word.find(@judge_candidate.word_id)
+			@guess_id = @judge_candidate.id
+			@guess_content = @judge_candidate.content
+		else
+			flash[:warning] = "No available guesses to judge! Please come back later."
+		end	
+	end
+
 end
