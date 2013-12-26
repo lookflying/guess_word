@@ -1,13 +1,50 @@
 <script>
-	function refresh_guess(){
-		
+	function guess_list_item(id, content, judge){
+		var icon;
+		if ($(".old-guess#" + id).length <= 0){
+			var old_guess = $("<li></li>").appendTo("#old-guesses")
+			.attr("id", id)
+			.addClass("list-group-item list-group-item-info old-guess");
+
+			icon = $("<i></i>").appendTo(old_guess)
+			.addClass("judge-icon")
+			.attr("id", id);
+
+			old_guess.append(content)
+			}else{
+			icon = $("#" + id + ".judge-icon")
+		}
+		switch(judge){
+			case "new":
+			icon.attr("class", "judge-icon fa fa-clock-o fa-lg");
+			break;
+			case "true":
+			icon.attr("class", "judge-icon fa fa-thumbs-o-up fa-lg");
+			break;
+			case "false":
+			icon.attr("class", "judge-icon fa fa-thumbs-o-down fa-lg");
+			break;
+			case "guess_right":
+			icon.attr("class", "judge-icon fa fa-check-circle fa-lg");
+			break;
+			case "not_sure":
+			default:
+			icon.attr("class", "judge-icon fa fa-question-circle fa-lg");
+			break;
+		}
 	}
-	$(function(){
-		setInterval(function(){
-			$.get("guessed", { id: <%= @guess_activity.id %>}, function(data){
-				$("#test-ajax").html(data.string);
+
+	function refresh_old_guess(){
+		$.get("guessed", { id: <%= @guess_activity.id %>}, function(data){
+			$.each(data, function(idx, obj){
+				guess_list_item(obj.id, obj.content, obj.judge);
 			});
-		}, 1000);
+		});
+	}
+
+	$(function(){
+		refresh_old_guess();
+		setInterval(refresh_old_guess, 1300);
 	});
 </script>
 <div class="page-header">
@@ -17,20 +54,7 @@
 		<h1><%= @word.length %> Letter(s)<small><%= @word.property %></small></h1>
 	<% end %>
 </div>
-<ul class="list-group">
-	<% @old_guesses.each do |guess| %> 
-		<% if guess.judge == "new" %>
-			<li class="list-group-item list-group-item-info"><span class="glyphicon glyphicon-time"></span><%= guess.content %></li>
-		<% elsif guess.judge == "true" %>
-			<li class="list-group-item list-group-item-success"><span class="glyphicon glyphicon-thumbs-up"></span><%= guess.content %></li>
-		<% elsif guess.judge == "false" %>
-			<li class="list-group-item list-group-item-danger"><span class="glyphicon glyphicon-thumbs-down"></span><%= guess.content %></li>
-		<% elsif guess.judge == "guess_right" %>
-			<li class="list-group-item list-group-item-success"><span class="glyphicon glyphicon-ok-sign"></span><%= guess.content %></li>
-		<% else %>
-			<li class="list-group-item list-group-item-warning"><span class="glyphicon glyphicon-trash"</span><%= guess.content %></li>
-		<% end %>
-	<% end %>
+<ul class="list-group" id = "old-guesses">
 </ul>
 
 
@@ -39,7 +63,6 @@
 		<%= text_field_tag "guess_content", nil, placeholder: "New Guess", class: "form-control" %>
 	</div>
 	<%= hidden_field_tag :id, @guess_activity.id %>
-	<%= hidden_field_tag :word_id, @word.id %>
 	<% if not @guess_to_judge.nil? %>
 		<%= hidden_field_tag :guess_to_judge_id, @guess_to_judge.id %>
 		<ul class="list-group">
@@ -61,6 +84,3 @@
 		<%= submit_tag("Guess", class: "btn btn-primary btn-lg") %>
 	<% end %>
 <% end %>
-
-
-<div id="test-ajax">init</div>

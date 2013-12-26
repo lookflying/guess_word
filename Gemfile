@@ -57,3 +57,5 @@ end
 group :development do
 	gem 'seed_dump'
 end
+gem 'jquery-ui-rails'
+gem 'font-awesome-rails'

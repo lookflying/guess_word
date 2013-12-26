@@ -36,7 +36,7 @@ class GameController < ApplicationController
 				if params[:guess_content].empty?
 					empty_guess
 				else	
-					add_guess(@guess_activity, params[:guess_content], params[:word_id])
+					add_guess(@guess_activity, params[:guess_content])
 					params[:guess_content] = ""
 				end
 			end
@@ -87,8 +87,9 @@ class GameController < ApplicationController
 					old_guesses = Guess.where(user_id: activity.user_id, word_id: activity.word_id)
 					guesses_json = Jbuilder.encode do |json|
 						json.array! old_guesses do |g|
+							json.id g.id
 							json.content g.content
-							json.judge encode_judge(g.judge)
+							json.judge g.judge
 						end
 					end
 					render json: guesses_json

@@ -20,11 +20,11 @@ module ApplicationHelper
 			end
 	end
 
-	def add_guess(guess_activity, guess_content, word_id)
+	def add_guess(guess_activity, guess_content)
 		if guess_activity.status != "finished"
 			guess = Guess.new
-			guess.do_guess(guess_activity.user_id, word_id, guess_content)
-			if guess_content == Word.find(word_id).word
+			guess.do_guess(guess_activity.user_id, guess_activity.word_id, guess_content)
+			if guess_content == Word.find(guess_activity.word_id).word
 				guess.do_judge(0, :guess_right)
 				guess_activity.update(status: :finished)
 			end
