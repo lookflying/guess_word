@@ -51,7 +51,7 @@
 	<% if @guess_activity.status == "finished" %>
 		<h1><%= @word.word %><small><%= @word.property %></small></h1>
 	<% else %>
-		<h1><%= @word.length %> Letter(s)<small><%= @word.property %></small></h1>
+		<h1>Length = <%= @word.length %> <small><%= @word.property %></small></h1>
 	<% end %>
 </div>
 <ul class="list-group" id = "old-guesses">
