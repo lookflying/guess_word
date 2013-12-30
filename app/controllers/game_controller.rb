@@ -112,6 +112,7 @@ class GameController < ApplicationController
 				guess_activity_judged = GuessActivity.where(user_id: guess_judged.user_id, word_id: guess_judged.word_id).first
 				guess_activity_judged.update(status: :finished)
 			end
+			params.clear
 		end
 
 		#display

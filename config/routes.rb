@@ -21,7 +21,7 @@ GuessWord::Application.routes.draw do
   post 'guess' => 'game#guess', as: 'do_guess'
 	get 'guess', to: redirect('home')
 	post 'judge' => 'game#judge', as: 'do_judge'
-	get 'judge', to: redirect('home')
+	get 'judge' => 'game#judge', as: 'refresh_judge'
 	get 'home' => 'game#home', as: 'home'
 	get 'test' => 'game#test', as: 'test'
 	get 'guessed' => 'game#guessed', as: 'guessed'

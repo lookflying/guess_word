@@ -8,12 +8,14 @@
 			<li class="list-group-item"><%= @guess_content %></li>
 			<li class="list-group-item">
 			<div class="input_group">
-				<button name="judge" type="submit" value="true" class="btn btn-info">True</button>
-				<button name="judge" type="submit" value="false" class="btn btn-danger">False</button>
-				<button name="judge" type="submit" value="not_sure" class="btn btn-warning">Not Sure</button>
-				<button name="judge" type="submit" value="guess_right" class="btn btn-success">Guess Right</button>
+				<button name="judge" type="submit" value="true" class="btn btn-info"><i class="fa fa-thumbs-o-up fa-lg"></i> True</button>
+				<button name="judge" type="submit" value="false" class="btn btn-danger"><i class="fa fa-thumbs-o-down fa-lg"></i> False</button>
+				<button name="judge" type="submit" value="not_sure" class="btn btn-warning"><i class="fa fa-question-circle fa-lg"></i> Not Sure</button>
+				<button name="judge" type="submit" value="guess_right" class="btn btn-success"><i class="fa fa-check-circle fa-lg"></i> Guess Right</button>
 			</div>
 			</li>
 		</ul>
 	<% end %>
+<% else %>
+	<a class="btn btn-primary" href=<%= refresh_judge_path %>><i class="fa fa-refresh fa-lg"></i> Refresh</a>
 <% end %>
